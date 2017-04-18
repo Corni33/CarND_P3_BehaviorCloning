@@ -15,9 +15,14 @@ To achieve this, the following steps were performed:
 
 ## Recording Data
 
-The training and validation data consists of recorded human driving behavior in the simulator. 
-The data contains one lap around the track in each direction while driving in the middle of the lane and several recovery scenarios, i.e. scenarios for steering the car back to the center from the left or right side of the road.
+The training and validation data consists of recorded human driving behavior from the simulator. 
+The data contains one lap around the track in each direction while driving in the middle of the road and several recovery scenarios, i.e. scenarios for steering the car back to the center from the left or right side of the road.
 At every frame of the simulation images from three cameras mounted on the vehicle (left, center and right camera) and the steering angle are captured and stored.
+
+
+An example 
+
+
 
 ## Preprocessing
 
