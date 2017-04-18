@@ -45,7 +45,7 @@ The last preprocessing step consists of normalizing the pixel intensity values o
 
 As the goal of this project (steering a car towards the center of a lane/road) is similar to the problem statement in the reputable paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. 
 An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). 
-Furthermore two dropout layers have been added to avoid overfitting and allow for better generalization.
+Furthermore two dropout layers have been added to avoid overfitting and to allow for better generalization.
 Tanh activation functions have been used in all fully connected layers.
 
 The final model structure of the convolutional neural network looks like this (model.py lines 112 - 124):
@@ -98,5 +98,7 @@ Too small values led to the car drifting off the road in narrow curves while too
 After tuning the parameters the model is now able to follow the track without leaving the road and also to recover from artificially induced bad situations (car nearly leaving the track) in a robust manner.
 As a way to make the movement of the car more natural and fluid I added a low-pass filter to the steering angle values. 
 The car now behaves less jittery and mimics human driving behavior in a better way.
+
+The file video.mp4 contains a recorded lap around track one of the driving simulator.
 
 
