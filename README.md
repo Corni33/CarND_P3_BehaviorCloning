@@ -28,18 +28,17 @@ All in all 8271 frames have been recorded which leads to 24813 individual images
 
 ## Preprocessing
 
-As can bee seen in the example images above there is lots of "unnecessary" data (e.g. hills next to the road) that tells us nothing about the course of the road. 
-All images therefore get cropped vertically to only contain interesting features:
+The images from the left and right camera show the road as if the car were to be shifted a bit to either side of the road. 
+The steering angle corresponding to these images therefore gets adjusted by adding a constant offset to the actual recorded steering angle (model.py lines 21 and 25). 
 
+As can bee seen in the example images above there is lots of "unnecessary" data (e.g. hills next to the road) that tells us nothing about the course of the road. 
+All images therefore get cropped vertically to only contain interesting features (model.py lines 21):
 ![alt text][images_cropped]
 
+An easy way to double the amount of data available is simply mirroring the images and switching the sign of their corresponding steering angle (model.py lines 21):
 ![alt text][images_mirrored]
 
-normailzation
-cut out
-mirror
-left right steering angle adjustment
-
+The last preprocessing step consists in normalizing the pixel values of each color channel to the interval [-1, 1] (model.py lines 21).  
 
 ## Model Architecture 
 
