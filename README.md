@@ -30,10 +30,33 @@ At every frame of the simulation images from three cameras mounted on the vehicl
 
 ## Model Architecture 
 
-As the project has many similarities to the famous paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). Also two dropout layers have been added to avoid overfitting and allow for better generalization (model.py lines 21).
+As the project has many similarities (steering a car towards the center of the lane/road) to the famous paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). Also two dropout layers have been added to avoid overfitting and allow for better generalization (model.py lines 21).
 
 The final model structure looks like this:
-TODO
+
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Input         		| 32x32 grayscale image   							                 | 
+| Convolution 5x5 | 1x1 stride, valid padding, output = 28x28x10 	|
+| ReLU					       |												                                     |
+| Max pooling	2x2 | 2x2 stride, valid padding, output = 14x14x10 				 |
+| Convolution 5x5 | 1x1 stride, valid padding, output = 10x10x20 	|
+| ReLU					       |												                                     |
+| Max pooling	2x2 | 2x2 stride, valid padding, output = 5x5x20 				   |
+| Fully connected		| input = 500, output = 120        					|
+| ReLU					       |												                                  |
+| Dropout					       |												                               |
+| Fully connected		| input = 120, output = 84        					|
+| ReLU					       |												                                  |
+| Dropout					       |												                               |
+| Fully connected		| input = 84, output = 60        					|
+| ReLU					       |												                                  |
+| Dropout					       |												                               |
+| Fully connected		| input = 60, output = 43        					|
+| Softmax				     |         									|
+ 
+TODO update table
+
 TODO -> tanh instead of relu
 My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
@@ -50,31 +73,14 @@ Instead of using ReLu activation functions in the fully connected layers, I used
 In my tests ReLu activations had much worse convergence properties and often predicted a steering angle near zero even after training for multiple epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
 
 
-###Model Architecture and Training Strategy
+## Model Evaluation
 
 ####1. Solution Design Approach
-
-The overall strategy for deriving a model architecture was to ...
-
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
 
 The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
-
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
 
 ####3. Creation of the Training Set & Training Process
 
