@@ -36,8 +36,8 @@ The final model structure looks like this:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32 grayscale image   							                 | 
-| Convolution 5x5 | 1x1 stride, valid padding, output = 28x28x10 	|
+| Input         		| 78x320x3 color image   							                 | 
+| Convolution 5x5 | 2x2 stride, output = 28x28x10 	|
 | ReLU					       |												                                     |
 | Max pooling	2x2 | 2x2 stride, valid padding, output = 14x14x10 				 |
 | Convolution 5x5 | 1x1 stride, valid padding, output = 10x10x20 	|
@@ -72,14 +72,13 @@ I experimented with using additional fully connected layers but the validation a
 Instead of using ReLu activation functions in the fully connected layers, I used tanh activations. 
 In my tests ReLu activations had much worse convergence properties and often predicted a steering angle near zero even after training for multiple epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
 
+0.25 TODO
 
 ## Model Evaluation
 
-####1. Solution Design Approach
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+After tuning the parameters the model is now able to follow the track without leaving the road and also to recover from artificially induced bad situations (car nearly leaving the track) in a robust manner.
+As a way to make the movement of the car more natural and fluid, I added a low-pass filter to the steering angle values. 
+The car now behaves less jittery and mimics human driving in a better way.
 
 
 ####3. Creation of the Training Set & Training Process
