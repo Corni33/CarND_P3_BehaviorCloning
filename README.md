@@ -12,7 +12,7 @@ To achieve this, the following steps were performed:
 [images_orig]: ./images_orig.png "Recorded images (center, left and right camera)"
 [images_cropped]: ./images_cropped.png "Images cropped to exclude unnecessary data"
 [images_mirrored]: ./images_cropped_mirrored.png "Mirrored images"
-[loss_function]: ./loss_function.jpg "MSE loss for training and validation data"
+[loss_function]: ./training_loss.png "MSE loss for training and validation data"
 
 
 ## Recording Data
