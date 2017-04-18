@@ -64,20 +64,17 @@ The final model structure looks like this:
 | Convolution 3x3 | 1x1 stride, output = 3x33x64 	|
 | ReLU					       | |
 | Flatten        |  	|		       
-| Fully connected		| input = 6336, output = 100        					|
-| tanh					       |												                                  |
-| Dropout					       |												                               |
-| Fully connected		| input = 100, output = 50        					|
-| tanh					       |												                                  |
-| Dropout					       |												                               |
-| Fully connected		| input = 50, output = 10        					|
-| tanh					       |												                                  |
-| Fully connected		| input = 10, output = 1        					|
-| tanh				     |         									|
+| Fully connected		| input = 6336, output = 100  	|
+| Tanh					       |			  |
+| Dropout					       |		    |
+| Fully connected		| input = 100, output = 50   	|
+| Tanh					       |			       |
+| Dropout					       |		   |
+| Fully connected		| input = 50, output = 10  	|
+| Tanh					       |				   |
+| Fully connected		| input = 10, output = 1    	|
+| Tanh				     |         									|
 
-
-<!--The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 10-16). 
-The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.-->
 
 ## Parameter Tuning and Training Strategy
 
@@ -89,8 +86,8 @@ After training the network for 10 epochs on the training data the validation acc
 ![alt text][loss_function]
 
 I experimented with using additional fully connected layers but the validation accuracy did not improve further. 
-Instead of using ReLu activation functions in the fully connected layers, I used tanh activations. 
-In my tests ReLu activations had worse convergence properties and often predicted a steering angle near zero even after training for many epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
+Instead of using ReLU activation functions in the fully connected layers, I used tanh activations. 
+In my tests ReLU activations had worse convergence properties and often predicted a steering angle near zero even after training for many epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
 
 The steering angle offset for images from the left and right camera has been set to 0.25. 
 Too small values led to the car drifting off the road in narrow curves while too high values made the car unstable on a straight road.
