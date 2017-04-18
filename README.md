@@ -23,22 +23,23 @@ To achieve this, the following steps have to be performed:
 
 The training and validation data consists of recorded human driving behavior in the simulator. 
 The data contains one lap around the track in each direction and several recovery scenarios, i.e. scenarios for steering the car back to the center of the road.
-Images from three cameras (left, center, right) and the corresponding steering angles are captured and stored.
+At every frame of the simulation images from three cameras mounted on the vehicle (left, center and right camera) and the steering angle are captured and stored.
+
+## Preprocessing
 
 
 ## Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+As the project has many similarities to the famous paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). Also two dropout layers have been added to avoid overfitting and allow for better generalization (model.py lines 21).
 
+The final model structure looks like this:
+TODO
+TODO -> tanh instead of relu
 My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
-
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
-####2. Attempts to reduce overfitting in the model
+The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 ####3. Model parameter tuning
 
