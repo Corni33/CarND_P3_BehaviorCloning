@@ -39,7 +39,7 @@ All images therefore get cropped vertically to only contain the more interesting
 An easy way to double the amount of data available is simply mirroring the images and switching the sign of their corresponding steering angle (model.py line 23) which in the end leads to 49626 samples (image + steering angle):
 ![alt text][images_mirrored]
 
-The last preprocessing step consists of normalizing the pixel values of each color channel to the interval [-1, 1] (model.py line 17).  
+The last preprocessing step consists of normalizing the pixel intensity values of each color channel to the interval [-1, 1] (model.py line 17).  
 
 ## Model Architecture 
 
