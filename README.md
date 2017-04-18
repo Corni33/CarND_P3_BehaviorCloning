@@ -2,10 +2,10 @@
 
 The goal of this project is to perform end to end learning for steering a car in a driving simulator based on camera images.
 To achieve this, the following steps were performed:
-* Use the driving simulator to collect data of good driving behavior
-* Build a convolution neural network in Keras that predicts steering angles from images
-* Train and validate the model 
-* Test that the model successfully drives around the track without leaving the road
+* Data collection in the driving simulator
+* Design of a convolution neural network in Keras that predicts steering angles from images
+* Training and validation of the model 
+* Evaluation of the models capability to successfully drive around a track without leaving the road
 
 
 [//]: # (Image References)
