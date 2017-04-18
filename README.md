@@ -51,33 +51,30 @@ Tanh activation functions have been used in all fully connected layers.
 The final model structure looks like this:
 
 | Layer         		|     Description	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Input         		| 78x320x3 normalized color image   							                 | 
+|:---------------------:|:------------------------------:| 
+| Input         		| 78x320x3 normalized color image   	| 
 | Convolution 5x5 | 2x2 stride, output = 37x158x24 	|
-| ReLU					       |			                                        |
+| ReLU					       |			                               |
 | Convolution 5x5 | 2x2 stride, output = 17x77x36 	|
-| ReLU					       |
+| ReLU					       |    |
 | Convolution 5x5 | 2x2 stride, output = 7x37x48 	|
-| ReLU					       |
-| Convolution 5x5 | 1x1 stride, output = 7x37x48 	|
-| ReLU					       |
+| ReLU					       | |
+| Convolution 3x3 | 1x1 stride, output = 5x35x64 	|
+| ReLU					       | |
+| Convolution 3x3 | 1x1 stride, output = 3x33x64 	|
+| ReLU					       | |
+| Flatten        |  	|		       
+| Fully connected		| input = 6336, output = 100        					|
+| tanh					       |												                                  |
+| Dropout					       |												                               |
+| Fully connected		| input = 100, output = 50        					|
+| tanh					       |												                                  |
+| Dropout					       |												                               |
+| Fully connected		| input = 50, output = 10        					|
+| tanh					       |												                                  |
+| Fully connected		| input = 10, output = 1        					|
+| tanh				     |         									|
 
-
-| Convolution 5x5 | 1x1 stride, valid padding, output = 10x10x20 	|
-| ReLU					       |												                                     |
-| Fully connected		| input = 500, output = 120        					|
-| ReLU					       |												                                  |
-| Dropout					       |												                               |
-| Fully connected		| input = 120, output = 84        					|
-| ReLU					       |												                                  |
-| Dropout					       |												                               |
-| Fully connected		| input = 84, output = 60        					|
-| ReLU					       |												                                  |
-| Dropout					       |												                               |
-| Fully connected		| input = 60, output = 43        					|
-| Softmax				     |         									|
- 
-TODO update table
 
 <!--The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 10-16). 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.-->
