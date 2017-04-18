@@ -1,9 +1,9 @@
 # **Behavioral Cloning Project**
 
-The goal of this project is to perform end to end learning for controlling a car in a driving simulator based on camera images.
+The goal of this project is to perform end to end learning for steering a car in a driving simulator based on camera images.
 
 To achieve this, the following steps have to be performed:
-* Use the simulator to collect data of good driving behavior
+* Use the driving simulator to collect data of good driving behavior
 * Build a convolution neural network in Keras that predicts steering angles from images
 * Train and validate the model 
 * Test that the model successfully drives around the track without leaving the road
@@ -19,12 +19,14 @@ To achieve this, the following steps have to be performed:
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
-## Capturing Training Data
+## Recording Data
+
+The training and validation data consists of recorded human driving behavior in the simulator. 
+The data contains one lap around the track in each direction and several recovery scenarios, i.e. scenarios for steering the car back to the center of the road.
+Images from three cameras (left, center, right) and the corresponding steering angles are captured and stored.
 
 
-
-
-###Model Architecture and Training Strategy
+## Model Architecture and Training Strategy
 
 ####1. An appropriate model architecture has been employed
 
