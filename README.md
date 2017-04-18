@@ -12,6 +12,7 @@ To achieve this, the following steps were performed:
 [images_orig]: ./images_orig.png "Recorded images (center, left and right camera)"
 [images_cropped]: ./images_cropped.png "Images cropped to exclude unnecessary data"
 [images_mirrored]: ./images_cropped_mirrored.png "Mirrored images"
+[loss_function]: ./loss_function.jpg "MSE loss for training and validation data"
 
 
 ## Recording Data
@@ -80,10 +81,9 @@ The model was tested by running it through the simulator and ensuring that the v
 The mean squared error over samples was chosen as loss function for the regression problem of predicting the continuous value of the steering angle.
 As the model was trained using an Adam optimizer, the learning rate was not adapted manually (model.py line 25). 
 
-All the data was split into a training (80%) and validation (20%) data set. 
-
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+The data has been split into a training (80%) and a validation (20%) data set. 
+After training the network for 10 epochs on the training data the validation accuracy stopped to decrease which indicated that further training was not necessary:
+![alt text][loss_function]
 
 
 I experimented with using additional fully connected layers but the validation accuracy did not improve further. 
