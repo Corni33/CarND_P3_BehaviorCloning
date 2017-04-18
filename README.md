@@ -26,7 +26,7 @@ All in all 8271 frames have been recorded which leads to 24813 individual images
 
 ## Preprocessing
 
-As can bee seen in the example images above there is lots of "unnecessary" data (e.g. trees next to the road) which states nothing about the course of the road. 
+As can bee seen in the example images above there is lots of "unnecessary" data (e.g. hills next to the road) that tells us nothing about the course of the road. 
 All images therefore get cropped vertically to only contain interesting features:
 
 normailzation
