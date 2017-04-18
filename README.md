@@ -30,25 +30,25 @@ All in all 8271 frames have been recorded which leads to 24813 individual camera
 ## Preprocessing
 
 The images from the left and right camera show the road as if the car was shifted a bit to either side of the road. 
-The steering angle corresponding to these images therefore gets adjusted by adding a constant steering angle offset to the actual recorded steering angle (model.py lines 21 and 25). 
+The steering angle corresponding to these images therefore gets adjusted by adding a constant steering angle offset to the actual recorded steering angle (model.py lines 65 and 68). 
 
 As can bee seen in the example images from the last section there is lots of "unnecessary" data (e.g. hills next to the road) that tells us nothing about the course of the road. 
-All images therefore get cropped vertically to only contain the more interesting features (model.py lines 21):
+All images therefore get cropped vertically to only contain the more interesting features (model.py line 20):
 ![alt text][images_cropped]
 
-An easy way to double the amount of data available is simply mirroring the images and switching the sign of their corresponding steering angle (model.py lines 21) which in the end leads to 49626 samples (image + steering angle):
+An easy way to double the amount of data available is simply mirroring the images and switching the sign of their corresponding steering angle (model.py line 23) which in the end leads to 49626 samples (image + steering angle):
 ![alt text][images_mirrored]
 
-The last preprocessing step consists in normalizing the pixel values of each color channel to the interval [-1, 1] (model.py lines 21).  
+The last preprocessing step consists of normalizing the pixel values of each color channel to the interval [-1, 1] (model.py line 17).  
 
 ## Model Architecture 
 
 As the project has many similarities (steering a car towards the center of a lane/road) to the famous paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. 
 An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). 
-Furthermore two dropout layers have been added to avoid overfitting and allow for better generalization (model.py lines 21).
+Furthermore two dropout layers have been added to avoid overfitting and allow for better generalization.
 Tanh activation functions have been used in all fully connected layers.
 
-The final model structure looks like this:
+The final model structure looks like this (model.py lines 112 - 124):
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:------------------------------:| 
@@ -79,9 +79,9 @@ The final model structure looks like this:
 ## Parameter Tuning and Training Strategy
 
 The mean squared error (mse) over samples was chosen as a loss function for the regression problem of predicting the continuous value of the steering angle.
-As the model was trained using an Adam optimizer, the learning rate was not adapted manually (model.py line 25). 
+As the model was trained using an Adam optimizer, the learning rate was not adapted manually (model.py line 127). 
 
-The data has been split into a training (80%) and a validation (20%) data set. 
+The data has been split into a training (80%) and a validation (20%) data set (model.py line 48). 
 After training the network for 10 epochs on the training data the validation accuracy stopped to decrease which indicated that further training was not necessary:
 ![alt text][loss_function]
 
