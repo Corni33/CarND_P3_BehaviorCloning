@@ -9,7 +9,7 @@ To achieve this, the following steps were performed:
 
 
 [//]: # (Image References)
-[images_orig]: ./recorded_images.png "Recorded images (left, center and right camera)"
+[images_orig]: ./recorded_images.png "Recorded images (center, left and right camera)"
 [images_cropped]: ./cropped_images.png "Images cropped to exclude unnecessary data"
 [images_mirrored]: ./cropped_images_mirrored.png "Mirrored images"
 
