@@ -1,8 +1,7 @@
 # **Behavioral Cloning Project**
 
 The goal of this project is to perform end to end learning for steering a car in a driving simulator based on camera images.
-
-To achieve this, the following steps have to be performed:
+To achieve this, the following steps were performed:
 * Use the driving simulator to collect data of good driving behavior
 * Build a convolution neural network in Keras that predicts steering angles from images
 * Train and validate the model 
@@ -10,14 +9,9 @@ To achieve this, the following steps have to be performed:
 
 
 [//]: # (Image References)
-
 [image1]: ./examples/placeholder.png "Model Visualization"
 [image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+
 
 ## Recording Data
 
@@ -27,16 +21,24 @@ At every frame of the simulation images from three cameras mounted on the vehicl
 
 ## Preprocessing
 
+normailzation
+cut out
+mirror
+left right steering angle adjustment
+
 
 ## Model Architecture 
 
-As the project has many similarities (steering a car towards the center of the lane/road) to the famous paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). Also two dropout layers have been added to avoid overfitting and allow for better generalization (model.py lines 21).
+As the project has many similarities (steering a car towards the center of a lane/road) to the famous paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. 
+An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). 
+Furthermore two dropout layers have been added to avoid overfitting and allow for better generalization (model.py lines 21).
+Tanh activation functions have been used in all fully connected layers.
 
 The final model structure looks like this:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 78x320x3 color image   							                 | 
+| Input         		| 78x320x3 normalized color image   							                 | 
 | Convolution 5x5 | 2x2 stride, output = 28x28x10 	|
 | ReLU					       |												                                     |
 | Max pooling	2x2 | 2x2 stride, valid padding, output = 14x14x10 				 |
@@ -57,11 +59,8 @@ The final model structure looks like this:
  
 TODO update table
 
-TODO -> tanh instead of relu
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+<!--The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 10-16). 
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.-->
 
 ## Parameter Tuning and Training Strategy
 
@@ -77,8 +76,8 @@ In my tests ReLu activations had much worse convergence properties and often pre
 ## Model Evaluation
 
 After tuning the parameters the model is now able to follow the track without leaving the road and also to recover from artificially induced bad situations (car nearly leaving the track) in a robust manner.
-As a way to make the movement of the car more natural and fluid, I added a low-pass filter to the steering angle values. 
-The car now behaves less jittery and mimics human driving in a better way.
+As a way to make the movement of the car more natural and fluid I added a low-pass filter to the steering angle values. 
+The car now behaves less jittery and mimics human driving behavior in a better way.
 
 
 ####3. Creation of the Training Set & Training Process
