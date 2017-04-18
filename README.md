@@ -23,19 +23,19 @@ At every frame of the simulation images from three cameras mounted on the vehicl
 The following three images are an example of what each camera sees:
 ![alt text][images_orig]
 
-All in all 8271 frames have been recorded which leads to 24813 individual images. 
+All in all 8271 frames have been recorded which leads to 24813 individual camera images. 
 
 
 ## Preprocessing
 
-The images from the left and right camera show the road as if the car were to be shifted a bit to either side of the road. 
-The steering angle corresponding to these images therefore gets adjusted by adding a constant offset to the actual recorded steering angle (model.py lines 21 and 25). 
+The images from the left and right camera show the road as if the car was shifted a bit to either side of the road. 
+The steering angle corresponding to these images therefore gets adjusted by adding a constant steering angle offset to the actual recorded steering angle (model.py lines 21 and 25). 
 
-As can bee seen in the example images above there is lots of "unnecessary" data (e.g. hills next to the road) that tells us nothing about the course of the road. 
-All images therefore get cropped vertically to only contain interesting features (model.py lines 21):
+As can bee seen in the example images from the last section there is lots of "unnecessary" data (e.g. hills next to the road) that tells us nothing about the course of the road. 
+All images therefore get cropped vertically to only contain the more interesting features (model.py lines 21):
 ![alt text][images_cropped]
 
-An easy way to double the amount of data available is simply mirroring the images and switching the sign of their corresponding steering angle (model.py lines 21):
+An easy way to double the amount of data available is simply mirroring the images and switching the sign of their corresponding steering angle (model.py lines 21) which in the end leads to 49626 samples (image + steering angle):
 ![alt text][images_mirrored]
 
 The last preprocessing step consists in normalizing the pixel values of each color channel to the interval [-1, 1] (model.py lines 21).  
@@ -77,14 +77,22 @@ The model was tested by running it through the simulator and ensuring that the v
 
 ## Parameter Tuning and Training Strategy
 
-As the model was trained using an Adam optimizer, the learning rate was not tuned manually (model.py line 25). 
-The mean squared error over the samples was chosen as loss function for the regression problem of predicting the continuous value of the steering angle.
+The mean squared error over samples was chosen as loss function for the regression problem of predicting the continuous value of the steering angle.
+As the model was trained using an Adam optimizer, the learning rate was not adapted manually (model.py line 25). 
+
+All the data was split into a training (80%) and validation (20%) data set. 
+
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
 
 I experimented with using additional fully connected layers but the validation accuracy did not improve further. 
 Instead of using ReLu activation functions in the fully connected layers, I used tanh activations. 
 In my tests ReLu activations had much worse convergence properties and often predicted a steering angle near zero even after training for multiple epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
 
-0.25 TODO
+The steering angle offset for images from the left and right camera was set to 0.25. 
+Too small values led to the car drifting off the road in narrow curves while too high values made the car instable on a straight road.
+
 
 ## Model Evaluation
 
@@ -93,30 +101,3 @@ As a way to make the movement of the car more natural and fluid I added a low-pa
 The car now behaves less jittery and mimics human driving behavior in a better way.
 
 
-####3. Creation of the Training Set & Training Process
-
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
-
-![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
