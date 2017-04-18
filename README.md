@@ -22,13 +22,13 @@ To achieve this, the following steps have to be performed:
 ## Recording Data
 
 The training and validation data consists of recorded human driving behavior in the simulator. 
-The data contains one lap around the track in each direction and several recovery scenarios, i.e. scenarios for steering the car back to the center of the road.
+The data contains one lap around the track in each direction while driving in the middle of the lane and several recovery scenarios, i.e. scenarios for steering the car back to the center from the left or right side of the road.
 At every frame of the simulation images from three cameras mounted on the vehicle (left, center and right camera) and the steering angle are captured and stored.
 
 ## Preprocessing
 
 
-## Model Architecture and Training Strategy
+## Model Architecture 
 
 As the project has many similarities to the famous paper "End to End Learning for Self-Driving Cars" by Bojarski and Del Testa, their model architecture is used here as a basis. An additional fully connected layer has been added to the end of the network, to output only one quantity (steering angle). Also two dropout layers have been added to avoid overfitting and allow for better generalization (model.py lines 21).
 
@@ -40,16 +40,15 @@ The model includes RELU layers to introduce nonlinearity (code line 20), and the
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
+## Parameter Tuning and Training Strategy
 
-####3. Model parameter tuning
+As the model was trained using an Adam optimizer, the learning rate was not tuned manually (model.py line 25). 
+The mean squared error over the samples was chosen as loss function for the regression problem of predicting the continuous value of the steering angle.
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+I experimented with using additional fully connected layers but the validation accuracy did not improve further. 
+Instead of using ReLu activation functions in the fully connected layers, I used tanh activations. 
+In my tests ReLu activations had much worse convergence properties and often predicted a steering angle near zero even after training for multiple epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
 
-####4. Appropriate training data
-
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
-
-For details about how I created the training data, see the next section. 
 
 ###Model Architecture and Training Strategy
 
