@@ -82,7 +82,7 @@ The mean squared error (mse) over samples was chosen as a loss function for the 
 As the model was trained using an Adam optimizer, the learning rate was not adapted manually (model.py line 127). 
 
 The data has been split into a training (80%) and a validation (20%) data set (model.py line 48). 
-After training the network for 10 epochs on the training data the validation accuracy stopped to decrease which indicated that further training was not necessary:
+After training the network for 10 epochs on the training data the validation accuracy stopped decreasing which indicated that further training was not necessary:
 ![alt text][loss_function]
 
 I experimented with using additional fully connected layers but the validation accuracy did not improve further. 
