@@ -99,6 +99,6 @@ After tuning the parameters the model is now able to follow the track without le
 As a way to make the movement of the car more natural and fluid I added a low-pass filter to the steering angle values. 
 The car now behaves less jittery and mimics human driving behavior in a better way.
 
-The file video.mp4 contains a recorded lap around track one of the driving simulator.
+The file [video.mp4](https://github.com/Corni33/CarND_P3_BehaviorCloning/blob/master/video.mp4) contains a recorded lap around track one of the driving simulator.
 
 
