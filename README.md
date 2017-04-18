@@ -9,19 +9,19 @@ To achieve this, the following steps were performed:
 
 
 [//]: # (Image References)
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
+[image_orig]: ./recorded_images.png "Recorded images (left, center and right camera)"
 
 
 ## Recording Data
 
 The training and validation data consists of recorded human driving behavior from the simulator. 
 The data contains one lap around the track in each direction while driving in the middle of the road and several recovery scenarios, i.e. scenarios for steering the car back to the center from the left or right side of the road.
-At every frame of the simulation images from three cameras mounted on the vehicle (left, center and right camera) and the steering angle are captured and stored.
 
+At every frame of the simulation images from three cameras mounted on the vehicle (left, center and right camera) as well as the current steering angle are recorded and stored.
+The following three images are an example of what each camera sees:
+![alt text][image_orig]
 
-An example 
-
+All in all 8271 frames have been recorded which leads to 24813 individual images. 
 
 
 ## Preprocessing
