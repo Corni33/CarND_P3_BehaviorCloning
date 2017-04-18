@@ -9,7 +9,9 @@ To achieve this, the following steps were performed:
 
 
 [//]: # (Image References)
-[image_orig]: ./recorded_images.png "Recorded images (left, center and right camera)"
+[images_orig]: ./recorded_images.png "Recorded images (left, center and right camera)"
+[images_cropped]: ./cropped_images.png "Images cropped to exclude unnecessary data"
+[images_mirrored]: ./cropped_images_mirrored.png "Mirrored images"
 
 
 ## Recording Data
@@ -19,7 +21,7 @@ The data contains one lap around the track in each direction while driving in th
 
 At every frame of the simulation images from three cameras mounted on the vehicle (left, center and right camera) as well as the current steering angle are recorded and stored.
 The following three images are an example of what each camera sees:
-![alt text][image_orig]
+![alt text][images_orig]
 
 All in all 8271 frames have been recorded which leads to 24813 individual images. 
 
@@ -28,6 +30,10 @@ All in all 8271 frames have been recorded which leads to 24813 individual images
 
 As can bee seen in the example images above there is lots of "unnecessary" data (e.g. hills next to the road) that tells us nothing about the course of the road. 
 All images therefore get cropped vertically to only contain interesting features:
+
+![alt text][images_cropped]
+
+![alt text][images_mirrored]
 
 normailzation
 cut out
