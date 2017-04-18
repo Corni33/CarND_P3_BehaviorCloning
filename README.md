@@ -20,7 +20,7 @@ To achieve this, the following steps were performed:
 The training and validation data consists of recorded human driving behavior from the simulator. 
 The data contains one lap around the track in each direction while driving in the middle of the road and several recovery scenarios, i.e. scenarios for steering the car back to the center from the left or right side of the road.
 
-At every frame of the simulation images from three cameras mounted on the vehicle (center, left and right camera) as well as the current steering angle are recorded and stored.
+At every frame of the simulation images from three cameras mounted on the vehicle (center, left and right camera) as well as the current steering angle were recorded and stored.
 The following three images are an example of what each camera sees:
 ![alt text][images_orig]
 
