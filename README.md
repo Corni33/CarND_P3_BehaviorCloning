@@ -53,12 +53,18 @@ The final model structure looks like this:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 78x320x3 normalized color image   							                 | 
-| Convolution 5x5 | 2x2 stride, output = 28x28x10 	|
-| ReLU					       |												                                     |
-| Max pooling	2x2 | 2x2 stride, valid padding, output = 14x14x10 				 |
+| Convolution 5x5 | 2x2 stride, output = 37x158x24 	|
+| ReLU					       |			                                        |
+| Convolution 5x5 | 2x2 stride, output = 17x77x36 	|
+| ReLU					       |
+| Convolution 5x5 | 2x2 stride, output = 7x37x48 	|
+| ReLU					       |
+| Convolution 5x5 | 1x1 stride, output = 7x37x48 	|
+| ReLU					       |
+
+
 | Convolution 5x5 | 1x1 stride, valid padding, output = 10x10x20 	|
 | ReLU					       |												                                     |
-| Max pooling	2x2 | 2x2 stride, valid padding, output = 5x5x20 				   |
 | Fully connected		| input = 500, output = 120        					|
 | ReLU					       |												                                  |
 | Dropout					       |												                               |
@@ -78,20 +84,19 @@ The model was tested by running it through the simulator and ensuring that the v
 
 ## Parameter Tuning and Training Strategy
 
-The mean squared error over samples was chosen as loss function for the regression problem of predicting the continuous value of the steering angle.
+The mean squared error (mse) over samples was chosen as a loss function for the regression problem of predicting the continuous value of the steering angle.
 As the model was trained using an Adam optimizer, the learning rate was not adapted manually (model.py line 25). 
 
 The data has been split into a training (80%) and a validation (20%) data set. 
 After training the network for 10 epochs on the training data the validation accuracy stopped to decrease which indicated that further training was not necessary:
 ![alt text][loss_function]
 
-
 I experimented with using additional fully connected layers but the validation accuracy did not improve further. 
 Instead of using ReLu activation functions in the fully connected layers, I used tanh activations. 
-In my tests ReLu activations had much worse convergence properties and often predicted a steering angle near zero even after training for multiple epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
+In my tests ReLu activations had worse convergence properties and often predicted a steering angle near zero even after training for many epochs. Tanh seems to better capture the nature of predicting a value of the steering angle between -1 and 1.
 
-The steering angle offset for images from the left and right camera was set to 0.25. 
-Too small values led to the car drifting off the road in narrow curves while too high values made the car instable on a straight road.
+The steering angle offset for images from the left and right camera has been set to 0.25. 
+Too small values led to the car drifting off the road in narrow curves while too high values made the car unstable on a straight road.
 
 
 ## Model Evaluation
